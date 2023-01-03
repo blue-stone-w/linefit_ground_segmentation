@@ -308,10 +308,10 @@ void GroundSegmentation::getMinZPoints(PointCloud *out_cloud)
       }
       /*按照步长增加dist*/
       dist += bin_step;
-    }
+    } // endfor: bins
     /*按照划分的步长进行角度的增加*/
     angle += seg_step;
-  }
+  } // endfor: segments
 }
 
 /*插入点云*/
@@ -377,5 +377,5 @@ void GroundSegmentation::insertionThread(const PointCloud &cloud, const size_t s
     }
     /*获取到划分坐标为最小z点的坐标和range*/
     segment_coordinates_[i] = Bin::MinZPoint(range, point.z);
-  }
+  } // endfor: 完成对起始索引至终止索引的遍历
 }

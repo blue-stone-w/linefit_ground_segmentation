@@ -28,7 +28,7 @@ void Segment::fitSegmentLines()
   /*将线的第一个点的信息传递到*/
   std::list<Bin::MinZPoint> current_line_points(1, line_start->getMinZPoint());
   LocalLine cur_line = std::make_pair(0, 0);
-  /*从第一个点开始对于bins上的每一个点都进行遍历操作;遍历每个*/
+  /*从第一个点开始对于bins上的每一个点都进行遍历操作;遍历每个bin*/
   for (auto line_iter = line_start + 1; line_iter != bins_.end(); ++line_iter)
   {
     /*如果我们设定的线上有点，则进行后面的操作*/
@@ -102,8 +102,8 @@ void Segment::fitSegmentLines()
           current_line_points.push_back(cur_point);
         }
       }
-    }
-  }
+    } // endif: have processed if haspoint
+  } // endfor: have traversed bins
   // Add last line.
   /*添加最后一条线*/
   if (current_line_points.size() > 2)
@@ -152,7 +152,7 @@ double Segment::verticalDistanceToLine(const double &d, const double &z)
       iteration.
        */
     }
-  }
+  } // endfor: have traversed points in this line
   return distance;
 }
 
