@@ -31,7 +31,7 @@ void Segment::fitSegmentLines()
   /*从第一个点开始对于bins上的每一个点都进行遍历操作;遍历每个bin*/
   for (auto line_iter = line_start + 1; line_iter != bins_.end(); ++line_iter)
   {
-    /*如果我们设定的线上有点，则进行后面的操作*/
+    /*如果我们该bin上有点，则进行后面的操作*/
     if (line_iter->hasPoint())
     {
       Bin::MinZPoint cur_point = line_iter->getMinZPoint();
@@ -76,7 +76,7 @@ void Segment::fitSegmentLines()
           // Start new line.
           is_long_line = false;
           /*erase在删除的过程中还是减少vector的size*/
-          current_line_points.erase(current_line_points.begin(), --current_line_points.end());
+          current_line_points.erase(current_line_points.begin(), --current_line_points.end()); // note that last point is reserved
           --line_iter;
         }
         // Good line, continue.
